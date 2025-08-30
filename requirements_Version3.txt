@@ -1,0 +1,5 @@
+bleak
+matplotlib
+pandas
+manuf
+pytest
