@@ -5,7 +5,7 @@ Handles argument parsing, event loop, and calls main scanning/plotting logic.
 
 from ble_wifi_scanner.config import *
 from ble_wifi_scanner.scanners import start_scan_loops
-from ble_wifi_scanner.plotting import initialize_plot, update_plot
+from ble_wifi_scanner.plotting import initialize_plot, update_ploasync def main():
 
 import argparse
 import asyncio
@@ -16,10 +16,19 @@ def parse_args():
     parser.add_argument('--scan-duration', type=int, default=60, help='Scan duration in seconds')
     return parser.parse_args()
 
-async def main():
+async def main(args):
+    if args.debug:
+        import logging
+        logging.basicConfig(level=logging.DEBUG)
+    initialize_plot()
+    # Start the scan loop(s)
+    scan_task = asyncio.create_task(start_scan_loops(args.scan_duration))
+    try:async def main():
     # TODO: Set up loggers, plots, start scanning tasks, event loop, handle stop signals
     pass
-
+        await scan_task
+    except KeyboardInterrupt:
+        print("Scan interrupted. Exiting...")
 if __name__ == "__main__":
-    # TODO: Parse CLI args, run main event loop
-    pass
+    args = parse_args()
+    asyncio.run(main(args))
