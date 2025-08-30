@@ -1,3 +1,5 @@
-# Requirements
-
-# Placeholder for project dependencies
+bleak
+matplotlib
+pandas
+manuf
+pytest
