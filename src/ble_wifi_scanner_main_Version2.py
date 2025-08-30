@@ -18,14 +18,14 @@ def parse_args():
 
 async def main(args):
     if args.debug:
+    
         import logging
         logging.basicConfig(level=logging.DEBUG)
     initialize_plot()
     # Start the scan loop(s)
     scan_task = asyncio.create_task(start_scan_loops(args.scan_duration))
-    try:async def main():
-    # TODO: Set up loggers, plots, start scanning tasks, event loop, handle stop signals
-    pass
+    async def main():
+        try:
         await scan_task
     except KeyboardInterrupt:
         print("Scan interrupted. Exiting...")
