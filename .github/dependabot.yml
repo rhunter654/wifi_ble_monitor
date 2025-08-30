@@ -1,0 +1,68 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+"""
+Central configuration for BLE/Wi-Fi scanner.
+Edit constants here for easy global changes.
+"""
+
+# Example config variables
+WIFI_IFACE = "wlp5s0"
+WIFI_SCAN_INTERVAL_S = 5.0
+BLE_SCAN_INTERVAL_S = 5.0
+BLE_SCAN_DURATION_S = 4.5
+PLOT_REFRESH_INTERVAL_S = 1.0
+MAX_HISTORY_ROWS = 2000
+LOG_DIR = "./logs"
+
+# SUGGESTED VARIABLES
+
+# Wi-Fi scan settings
+WIFI_SCAN_TIMEOUT_S = 10.0  # Maximum time to wait for a Wi-Fi scan to complete
+WIFI_CHANNELS = [1, 6, 11]  # Wi-Fi channels to scan
+
+# BLE scan settings
+BLE_SCAN_DEVICE_FILTER = []  # List of BLE device MAC prefixes or names to filter
+BLE_SCAN_UUID_FILTER = []    # List of BLE UUIDs to filter services
+
+# Logging and output
+LOG_LEVEL = "INFO"           # Options: "DEBUG", "INFO", "WARNING", "ERROR"
+OUTPUT_FORMAT = "csv"        # Options: "csv", "json", "sqlite"
+RESULTS_DIR = "./results"    # Directory to save scan results
+
+# Performance and reliability
+MAX_CONCURRENT_SCANS = 2     # Limit on simultaneous BLE/Wi-Fi scans
+ERROR_RETRY_COUNT = 3        # Number of retries on scan failure
+SCAN_START_DELAY_S = 2.0     # Delay before starting the first scan
+
+# Device selection
+DEVICE_WHITELIST = []        # List of devices to always include (MACs, names)
+DEVICE_BLACKLIST = []        # List of devices to always exclude (MACs, names)
+
+# Plotting
+ENABLE_PLOTTING = True       # Toggle plotting functionality on/off
+
+# Timestamps and formatting
+DATE_FORMAT = "%Y-%m-%d %H:%M:%S"  # Format for timestamps in logs/results
+
+# API/server integration
+API_KEY = ""                 # API key if uploading results to a server
+
+# Feature toggles
+ENABLE_WIFI = True           # Toggle Wi-Fi scanning
+ENABLE_BLE = True            # Toggle BLE scanning
+
+# System resource management
+SYSTEM_RESOURCE_LIMITS = {
+    "cpu_percent": 80,       # Max CPU usage percent for scanner process
+    "ram_mb": 1024           # Max RAM usage in MB
+}
+
+# ... Add additional config constants as needed
+version: 2
+updates:
+  - package-ecosystem: "" # See documentation for possible values
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "weekly"
