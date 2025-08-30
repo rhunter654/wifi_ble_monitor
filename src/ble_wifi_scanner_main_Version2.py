@@ -11,8 +11,10 @@ import argparse
 import asyncio
 
 def parse_args():
-    # TODO: Copy argparse logic here
-    pass
+    parser = argparse.ArgumentParser(description="BLE/Wi-Fi Scanner CLI")
+    parser.add_argument('--debug', action='store_true', help='Enable debug logging')
+    parser.add_argument('--scan-duration', type=int, default=60, help='Scan duration in seconds')
+    return parser.parse_args()
 
 async def main():
     # TODO: Set up loggers, plots, start scanning tasks, event loop, handle stop signals
